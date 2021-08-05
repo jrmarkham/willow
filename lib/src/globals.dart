@@ -9,6 +9,7 @@ export 'globals/enums.dart';
 
 class Globals {
   static Map<String, dynamic>? localization;
+
   static Future<void> initGlobal() async {
     localization = await getLangData();
     return;

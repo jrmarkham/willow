@@ -6,6 +6,7 @@ abstract class FormBlocEvent extends Equatable {
 
 class FormBlocEventInitForm extends FormBlocEvent {
   final List<FormFieldElementObject> formElements;
+
   FormBlocEventInitForm(this.formElements);
 
   @override
@@ -14,10 +15,9 @@ class FormBlocEventInitForm extends FormBlocEvent {
 
 class FormBlocEventListenElement extends FormBlocEvent {
   final FormFieldElementObject formField;
+
   FormBlocEventListenElement(this.formField);
 
   @override
   List<Object> get props => [formField];
 }
-
-

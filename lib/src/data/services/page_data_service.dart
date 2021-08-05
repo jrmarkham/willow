@@ -9,17 +9,18 @@ abstract class BasePageService {
 class PageService extends BasePageService {
   // static singleton
   static final PageService _instance = PageService.internal();
+
   factory PageService() => _instance;
+
   PageService.internal();
-
-
- List<PageModel> getPageData() => Globals.localization?['pages'] ==
-      null ? [] : _parseLocalData();
+// consider using GSON and automate these results.
+  List<PageModel> getPageData() =>
+      Globals.localization?['pages'] == null ? [] : _parseLocalData();
 
   List<PageModel> _parseLocalData() {
     final List<dynamic> pageDataJson = Globals.localization?['pages'] as List;
-   return  pageDataJson.map((pageJson) => PageModel.fromJson(pageJson))
-       .toList();
+    return pageDataJson
+        .map((pageJson) => PageModel.fromJson(pageJson))
+        .toList();
   }
-
 }

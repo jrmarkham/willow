@@ -15,15 +15,16 @@ class InputTextField extends StatelessWidget {
   final Key? key;
   final TextInputType input;
 
-  const InputTextField({
-    required this.con,
-    required this.maxLen,
-    required this.maxLines,
-    required this.label,
-    required this.hintText,
-    required this.errorText,
-    this.key,
-    this.input = TextInputType.text}):super(key: key);
+  const InputTextField(
+      {required this.con,
+      required this.maxLen,
+      required this.maxLines,
+      required this.label,
+      required this.hintText,
+      required this.errorText,
+      this.key,
+      this.input = TextInputType.text})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -41,25 +42,22 @@ class InputTextField extends StatelessWidget {
           labelStyle: labelTextStyle(),
           helperStyle: bodyTextStyle(),
           focusedBorder:
-          OutlineInputBorder(borderSide: BorderSide(color: Colors.black))),
+              OutlineInputBorder(borderSide: BorderSide(color: Colors.black))),
     );
   }
 
-  TextStyle bodyTextStyle({Color color = Colors.blue}) => TextStyle(
-      fontSize: 12,
-      color: color);
+  TextStyle bodyTextStyle({Color color = Colors.blue}) =>
+      TextStyle(fontSize: 12, color: color);
 
-  TextStyle labelTextStyle({Color color =  Colors.blue}) => TextStyle(
-      fontSize: 15,
-      fontWeight: FontWeight.bold,
-      color: color);
-
+  TextStyle labelTextStyle({Color color = Colors.blue}) =>
+      TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: color);
 }
 
 class SetFormField extends StatelessWidget {
   final FormFieldElementObject fieldElementObject;
   final Key? key;
-  const SetFormField(this.fieldElementObject, {this.key}):super(key: key);
+
+  const SetFormField(this.fieldElementObject, {this.key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

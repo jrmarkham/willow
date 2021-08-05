@@ -66,7 +66,9 @@ class DynamicPageForm extends StatelessWidget {
                             style: TextStyle(color: Colors.white),
                           ),
                           onPressed: state.allVerified
-                              ? () => submitCall(context, submit: submit, formElements: state.formElements)
+                              ? () => submitCall(context,
+                                  submit: submit,
+                                  formElements: state.formElements)
                               : null,
                         )
                       ],
@@ -77,8 +79,9 @@ class DynamicPageForm extends StatelessWidget {
         });
   }
 
-  void submitCall(BuildContext context, {required Function submit, required
-  List<FormFieldElementObject> formElements}) {
+  void submitCall(BuildContext context,
+      {required Function submit,
+      required List<FormFieldElementObject> formElements}) {
     submit(_modelFromForm(formElements));
     Navigator.pop(context);
   }
@@ -95,7 +98,8 @@ class DynamicPageForm extends StatelessWidget {
     final List<FormFieldElementObject> list = [];
     list.add(titleFFEO(list.length, startVal: 'Page', reqField: true));
     list.add(subTitleFFEO(list.length, startVal: 'Sub Title', reqField: true));
-    list.add(bodyFFEO(list.length, startVal: 'Lorem Time . . . ', reqField: true));
+    list.add(
+        bodyFFEO(list.length, startVal: 'Lorem Time . . . ', reqField: true));
     list.add(urlFFEO(list.length, reqField: true));
     return list;
   }

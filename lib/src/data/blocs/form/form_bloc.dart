@@ -19,20 +19,22 @@ class FormBloc extends Bloc<FormBlocEvent, FormBlocState>
   FormBloc() : super(FormBlocInitial());
 
   @override
-  Stream<FormBlocState> mapEventToState(FormBlocEvent event,) async* {
+  Stream<FormBlocState> mapEventToState(
+    FormBlocEvent event,
+  ) async* {
     if (event is FormBlocEventInitForm) {
-      yield FormBlocStateLoaded(allVerified: state.allVerified, formElements: event.formElements);
+      yield FormBlocStateLoaded(
+          allVerified: state.allVerified, formElements: event.formElements);
       state.formElements.forEach((FormFieldElementObject element) {
         element.dataElement.text = element.startingValue;
         element.dataElement.addListener(() {
           add(FormBlocEventListenElement(element));
         });
-        // =>
       });
     }
 
     if (event is FormBlocEventListenElement) {
-     //
+      //
       FieldState updateFieldState = FieldState.invalid;
 
       // check empty
@@ -40,35 +42,33 @@ class FormBloc extends Bloc<FormBlocEvent, FormBlocState>
         updateFieldState = FieldState.empty;
       }
 
-
       // check unchanged if needs be
       if (updateFieldState == FieldState.invalid &&
-          event.formField.requiredUpdate && !this.isFieldChanged
-        (currentVal: event.formField.dataElement.text, originalVal: event
-          .formField.startingValue)) {
+          event.formField.requiredUpdate &&
+          !this.isFieldChanged(
+              currentVal: event.formField.dataElement.text,
+              originalVal: event.formField.startingValue)) {
         updateFieldState = FieldState.unchanged;
       }
 
-      if (updateFieldState == FieldState.invalid && this.isFieldValid(currentVal: event.formField.dataElement.text,
-          type: event.formField.fieldType)) {
+      if (updateFieldState == FieldState.invalid &&
+          this.isFieldValid(
+              currentVal: event.formField.dataElement.text,
+              type: event.formField.fieldType)) {
         updateFieldState = FieldState.valid;
       }
 
-
-
       final List<FormFieldElementObject> _update = List.from(state.formElements)
         ..replaceRange(event.formField.index, event.formField.index + 1,
-            [event.formField.copyWith(fieldState: updateFieldState)
-            ]);
+            [event.formField.copyWith(fieldState: updateFieldState)]);
 
       yield FormBlocStateLoaded(
           allVerified: !_update.any((FormFieldElementObject element) =>
-          element.fieldState != FieldState.valid && element.requiredField),
+              element.fieldState != FieldState.valid && element.requiredField),
           formElements: _update);
     }
   }
 
   void initBloc(List<FormFieldElementObject> formElements) =>
       add(FormBlocEventInitForm(formElements));
-
 }

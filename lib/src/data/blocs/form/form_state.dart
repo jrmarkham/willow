@@ -5,10 +5,7 @@ abstract class FormBlocState extends Equatable {
   final List<FormFieldElementObject> formElements = [];
 
   @override
-  List<Object> get props => [
-    allVerified,
-    formElements
-  ];
+  List<Object> get props => [allVerified, formElements];
 }
 
 // Maintains latest state //
@@ -25,7 +22,6 @@ class FormBlocStatePostState extends FormBlocState {
   List<Object> get props => [state];
 }
 
-
 class FormBlocInitial extends FormBlocState {
   @override
   List<Object> get props => [];
@@ -35,8 +31,7 @@ class FormBlocStateLoaded extends FormBlocState {
   final bool allVerified;
   final List<FormFieldElementObject> formElements;
 
-  FormBlocStateLoaded(
-      {required this.allVerified, required this.formElements});
+  FormBlocStateLoaded({required this.allVerified, required this.formElements});
 
   @override
   List<Object> get props => [allVerified, formElements];
