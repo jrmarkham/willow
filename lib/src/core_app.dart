@@ -51,9 +51,9 @@ class _CoreAppState extends State<CoreApp> {
                       onHorizontalDragEnd: (details) {
                         // Swiping in left direction
                         if (details.primaryVelocity! > 0) {
-                          swipeForward();
+                           swipeBack();
                         } else {
-                          swipeBack();
+                          swipeForward();
                         }
                       },
                       child: PageScreen(
